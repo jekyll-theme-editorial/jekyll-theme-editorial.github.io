@@ -18,6 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+
+###################
+# Site settings
+###################
 title: Your awesome title
 subtitle: by me and Middlebear
 email: your-email@example.com
@@ -30,13 +34,38 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
+
+###################
 # Build settings
+###################
 theme: jekyll-theme-editorial
 remote_theme: middlebear/jekyll-theme-editorial
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
 
+
+###################
+# Collections
+###################
+collections:
+  pages:
+    output:         true
+
+
+###################
+# Theme settings
+###################
+image_path:         '/assets/images/'         # site-wide default path for images
+script_path:        '/assets/js/'             # site-wide default path for scripts
+style_path:         '/assets/css/'            # site-wide default path for styles
+show:                                         # series of switches to customize what appears on the site
+  authors:          false                     # single author blogs may want to disable showing the same author everywhere
+
+
+###################
+# Page Defaults
+###################
 defaults:
   - scope:
       path:         ""
@@ -68,12 +97,6 @@ defaults:
       comments:     false
       published:    true
 
-collections:
-  pages:
-    output:         true
-
-show:                                         # series of switches to customize what appears on the site
-  authors:          false                     # single author blogs may want to disable showing the same author everywhere
 
 ###################
 # Jekyll Archives - https://github.com/jekyll/jekyll-archives
