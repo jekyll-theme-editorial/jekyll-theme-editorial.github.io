@@ -1,0 +1,39 @@
+---
+title:            Tags
+date:             2020-02-03 01:23:45 -0800
+permalink:        /tags/
+# NOTE: site.tags is a collection of documents for which tag.first is the tag itself
+---
+
+{%-assign sorted_tags         = site.tags           | sort-%}
+
+<p>These are the tags used on <a href="{{-site.url-}}">{{-site.title-}}</a> &nbsp;(number of &nbsp;<i class="far fa-sticky-note" style="font-size: 0.9em;"></i>&nbsp;posts).</p>
+<div class="row gtr-uniform">
+  <div class="col-8 col-12-small">
+    <h2>Site-wide Tags</h2>
+    <ul>
+      {%-for tag in sorted_tags %}
+      <li>
+        <strong id="{{-tag | first-}}" title="Articles tagged '{{-tag | first-}}'">{{-tag | first-}}</strong>
+        &nbsp; ({{-tag | last | size }})
+        <ul class="compact">
+          {% for post in tag.last-%}
+            {% include list_item.html li_class="post" title_template="Check out the ':item_title' post"-%}
+          {%-endfor %}
+        </ul>
+      </li>
+      {%-endfor %}
+    </ul>
+  </div>
+
+  <aside class="column col-4 col-12-small">
+    <h2>Tag Cloud</h2>
+    <ul class="inline tags">
+    {%-for tag in site.tags %}
+      <li>
+        <span title="Articles tagged '{{-tag | first-}}'" class="pill button" style="font-size: {{ tag | last | size | times:10 | plus:75-}}%; margin: 0.1rem;">{{-tag | first }} ({{-tag | last | size-}})</span>
+      </li>
+    {%-endfor %}
+    </ul>
+  </aside>
+</div>

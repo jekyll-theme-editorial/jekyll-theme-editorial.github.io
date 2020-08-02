@@ -1,0 +1,140 @@
+# Social: use at most 5; remove or comment out the handle for the others
+#         Reorder these here to suit your desired order on the page
+#         Capitalize labels to suit your preferences
+#         URL patterns here should be correct, but be sure to test them
+#         Icons are `icon brands` + the fontawsome class names to be used
+github:
+  label:    Github
+  handle:   middlebear
+  pattern:  https://github.com/%s
+  icon:     icon brands fa-github
+gravatar:
+  label:    Gravatar
+  handle:   middlebear2
+  pattern:  https://gravatar.com/%s
+  icon:     icon brands fa-google fa-rotate-270
+rubygems:
+  label:    RubyGems
+  handle:   middlebear
+  pattern:  https://rubygems.org/profiles/%s
+  icon:     icon fa-gem
+twitter:
+  label:    Middlebear Twitter
+  handle:   middlebear2
+  pattern:  https://twitter.com/%s
+  icon:     icon brands fa-twitter
+twitter2:
+  label:    Jekyll Twitter
+  handle:   jekyllrb
+  pattern:  https://twitter.com/%s
+  icon:     icon brands fa-twitter
+medium:
+  label:    Medium
+  handle:   jekyll
+  pattern:  https://medium.com/@%s
+  icon:     icon brands fa-medium-m
+facebook:
+  label:    Facebook
+  handle:   # jekyll
+  pattern:  https://www.facebook.com/%s
+  icon:     icon brands fa-facebook-f
+linkedin:
+  label:    LinkedIn
+  handle:   # jekyll
+  pattern:  https://www.linkedin.com/in/%s
+  icon:     icon brands fa-linkedin
+instagram:
+  label:    Instagram
+  handle:   jekyll
+  pattern:  https://www.instagram.com/%s
+  icon:     icon brands fa-instagram
+snapchat:
+  label:    Snapchat
+  handle:   # jekyll
+  pattern:  https://www.snapchat.com/add/%s
+  icon:     icon brands fa-snapchat-ghost
+gitlab:
+  label:    Gitlab
+  handle:   # jekyll
+  pattern:  https://gitlab.com/%s
+  icon:     icon brands fa-gitlab
+keybase:
+  label:    Keybase
+  handle:   # jekyll
+  pattern:  https://keybase.io/%s
+  icon:     icon brands fa-keybase
+500px:
+  label:    500px
+  handle:   # jekyll
+  pattern:  https://500px.com/%s
+  icon:     icon brands fa-500px
+flickr:
+  label:    Flickr
+  handle:   # jekyll
+  pattern:  https://www.flickr.com/photos/%s
+  icon:     icon brands fa-flickr
+pinterest:
+  label:    Pinterest
+  handle:   # jekyll
+  pattern:  https://www.pinterest.com/%s/
+  icon:     icon brands fa-pinterest
+dribbble:
+  label:    Dribbble
+  handle:   # jekyll
+  pattern:  https://dribbble.com/%s/collections
+  icon:     icon brands fa-dribbble
+behance:
+  label:    Behance
+  handle:   # jekyll
+  pattern:  https://www.behance.net/%s
+  icon:     icon brands fa-behance
+youtube:
+  label:    Youtube
+  handle:   # jekyll
+  pattern:  https://www.youtube.com/user/%s
+  icon:     icon brands fa-youtube
+vimeo:
+  label:    Vimeo
+  handle:   # jekyll
+  pattern:  https://vimeo.com/%s
+  icon:     icon brands fa-vimeo-v
+angelist:
+  label:    Angelist
+  handle:   # jekyll
+  pattern:  https://angel.co/u/%s
+  icon:     icon brands fa-angelist
+etsy:
+  label:    Etsy
+  handle:   # jekyll
+  pattern:  https://www.etsy.com/shop/%s
+  icon:     icon brands fa-etsy
+goodreads:
+  label:    Goodreads
+  handle:   # jekyll
+  pattern:  https://www.goodreads.com/%s
+  icon:     icon brands fa-goodreads-g
+tiktok:
+  label:    Tiktok
+  handle:   # jekyll
+  pattern:  https://www.tiktok.com/@%s
+  icon:     icon brands fa-tiktok
+tumblr:
+  label:    Tumblr
+  handle:   # jekyll
+  pattern:  https://%s.tumblr.com/
+  icon:     icon brands fa-tumblr
+reddit:
+  label:    Reddit
+  handle:   # jekyll
+  pattern:  https://www.reddit.com/u/%s
+  icon:     icon brands fa-reddit-alien
+soundcloud:
+  label:    Soundcloud
+  handle:   # jekyll
+  pattern:  https://soundcloud.com/%s
+  icon:     icon brands fa-soundcloud
+slack:
+  label:    Slack
+  handle:   # jekyll
+  pattern:  https://%s.slack.com/
+  icon:     icon brands fa-slack

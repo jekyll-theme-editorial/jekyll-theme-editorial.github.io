@@ -1,0 +1,47 @@
+---
+title:            Post Archive
+date:             2020-01-04 01:23:45 -0800
+permalink:        /archives/
+excerpt:          ""      # NOTE: this fixes liquid "'if' tag was never closed included" error: https://jekyllrb.com/docs/troubleshooting/#excerpts
+---
+
+{%-assign archived = site.jekyll-archives.enabled-%}
+{%-if archived contains 'year'-%}{%-unless archived contains 'month'-%}{%-unless archived contains 'day'-%}{%-assign is_year_archive = true-%}{%-endunless-%}{%-endunless-%}{%-endif-%}
+{%-if site.posts-%}
+  {%-assign archives_root = site.archives_root  | default: ''-%}
+  {%-assign posts_by_year = site.posts          | group_by_exp: 'post',   "post.date    | date: '%Y'"-%}
+
+  <!-- Archives -->
+  <p>This is the archive of posts for <a href="{{-site.url-}}">{{-site.title-}}</a> &nbsp;(number of &nbsp;<i class="far fa-sticky-note" style="font-size: 0.9em;"></i>&nbsp;posts).</p>
+  {%-if archived contains 'year' or archived contains 'month' or archived contains 'day'-%}
+    {%-for year in posts_by_year %}
+      {%-assign year_url = site.jekyll-archives.permalinks.year | replace: ':year', year.name-%}
+      <h2{%-if is_year_archive %} class="tight"{%-endif-%}>
+        <span title="Articles from year '{{-year.name-}}'">{{-year.name-}}</span>
+        <span class="smaller header-aside"> &nbsp;({{-year.items | size }})</span>
+      </h2>
+      {%-if archived contains 'month' or archived contains 'day'-%}
+        {%-assign posts_by_month    = year.items          | sort: 'date'  | group_by_exp: "post",    "post.date    | date: '%B'"-%}
+          {%-for month in posts_by_month %}
+            {%-assign month_name = month.name | date: '%m'-%}
+            {%-assign month_url = site.jekyll-archives.permalinks.month | replace: ':year', year.name | replace: ':month', month_name-%}
+            <h3 class="tight">
+              <span title="Articles from {{-month.name }} {{ year.name }}">{{-month.name }} {{ year.name-}}</span>
+              <span class="smaller header-aside"> &nbsp;({{-month.items | size }})</span>
+            </h3>
+            <ol>
+            {%-for post in month.items %}
+              {% include list_item.html-%}
+            {%-endfor %}
+            </ol>
+        {%-endfor %}
+      {%-else %}
+        <ol>
+        {%-for post in year.items %}
+          {% include list_item.html-%}
+        {%-endfor %}
+        </ol>
+      {%-endif %}
+    {%-endfor %}
+  {%-endif %}
+{%-endif %}

@@ -1,0 +1,12 @@
+- name: "Fully <em>Responsive</em>"
+  description: Works on a range of devices and screen sizes, with a automatically collapsing menu sidebar at smaller sizes.
+  icon: solid fa-laptop-code
+- name: Built on <em>HTML5 + CSS3</em>
+  description: Uses modern browser capabilities to reduce reliance on Javascript while delivering awesome features.
+  icon: solid fa-code
+- name: Super <em>Customizable</em>
+  description: Beyond content, theme elements can be configured, and even removed entirely, using site config variables or Jekyll front matter.
+  icon: solid fa-cog
+- name: <em>100% Free</em> under the <a href="/LICENSE.txt">Creative Commons</a>
+  description: Following HTML5 UP's <a href="https://html5up.net/license">original license</a>, the Editorial Jekyll theme is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0 license</a>.
+  icon: solid fa-gift

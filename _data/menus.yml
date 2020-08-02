@@ -1,0 +1,31 @@
+sidebar:
+  - url:        /
+    title:      Home
+    identifier: home
+  - url:        /about
+    title:      About
+    identifier: about
+  - url:        /elements
+    title:      Elements
+    identifier: elements
+  - url:        /posts
+    title:      Recent Posts
+    identifier: posts
+  - url:        /archives
+    title:      Archives
+    identifier: archives
+  - url:        /categories
+    title:      Categories
+    identifier: categories
+  - url:        /tags
+    title:      Tags
+    identifier: tags
+  - url:        /projects
+    title:      Projects
+    identifier: projects
+  - url:        /people
+    title:      Authors
+    identifier: authors
+  - url:        /signin
+    title:      Sign In
+    identifier: signin
