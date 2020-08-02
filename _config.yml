@@ -61,6 +61,14 @@ script_path:        '/assets/js/'             # site-wide default path for scrip
 style_path:         '/assets/css/'            # site-wide default path for styles
 show:                                         # series of switches to customize what appears on the site
   authors:          false                     # single author blogs may want to disable showing the same author everywhere
+scripts:                                      # these scripts entries can be moved to `_data/scripts.yml` for cleaner and more dynamic script inclusion
+  - file: jquery.min.js
+  - file: browser.min.js
+  - file: breakpoints.min.js
+  - file: util.js
+  - file: main.js
+  - file: email-obfuscation.js
+  - file: comments.js
 
 
 ###################
