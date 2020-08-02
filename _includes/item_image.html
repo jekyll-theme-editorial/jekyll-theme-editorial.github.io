@@ -1,0 +1,19 @@
+{%-assign item        = article | default: post | default: project | default: pg | default: page-%}
+{%-assign placeholder       = site.static_files         | find: 'name', 'placeholder.png'-%}
+{%-assign static_file_names = site.static_files         | map: 'name'-%}
+{%-assign image       = item.images.thumbnail.file      | default: item.images.default.file     | default: item.images.banner.file      | default: item.thumbnail       | default: item.image     | default: item.banner | default: placeholder.name-%}
+{%-assign alt_text    = item.images.thumbnail.alt_text  | default: item.images.default.alt_text | default: item.images.banner.alt_text  | default: item.images.alt_text | default: item.alt_text  | default: item.banner.alt_text-%}
+{%-assign img_title   = item.images.thumbnail.title     | default: item.images.default.title    | default: item.images.banner.title     | default: item.images.title    | default: item.title     | default: item.banner.title-%}
+
+item: {{ item | inspect }}<br>
+image: {{ image | inspect }}<br>
+placeholder: {{ placeholder | inspect }}<br>
+        {%-if item != empty %}
+          {%-if static_file_names contains image %}
+          <img src="{{-item.image_path | default: site.image_path-}}{{-image-}}" itemprop="thumbnail" class="u-photo" title="{{-img_title-}}" alt="{{-alt_text-}}"/>
+          {%-elsif image == empty %}
+          <img src="{{-item.image_path | default: site.image_path-}}{{-placeholder.name-}}" title="{{-img_title-}}" alt="{{-alt_text-}}"/>
+          {%-else %}
+          <div class="box"><h3>Missing image</h3>{{-image-}}<br>{{-img_title-}}</div>
+          {%-endif %}
+        {%-endif %}
