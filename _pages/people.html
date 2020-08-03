@@ -6,7 +6,7 @@ permalink:        /people/    # trailing slash makes it an `index.html` file ins
 ---
 
 {% if site.show.authors-%}
-  {% assign peeps = site.collections | find: "label", 'people'-%}
+  {% assign peeps = site.collections | where: "label", 'people' | first-%}
   {% if peeps.output-%}
     <p>Our wonderful authors love to share tales of wonder and zeal. Sometimes they go overboard and fall into the waters of silliness or cynicism. We hope you do understand, and take that into the highest consideration.</p>
     <hr class="major"/>
