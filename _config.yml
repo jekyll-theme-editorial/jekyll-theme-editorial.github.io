@@ -42,7 +42,7 @@ theme: jekyll-theme-editorial
 remote_theme: middlebear/jekyll-theme-editorial
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
+  # - jekyll-remote-theme
 
 
 ###################
