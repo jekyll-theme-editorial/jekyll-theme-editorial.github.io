@@ -3,11 +3,11 @@ layout:               home
 body_class:           home
 title:                "Hi, I’m Editorial<br /> by HTML5 UP & Middle Bear"
 subtitle:             My overridden site.tagline
-description:          "Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam."
+description:          "Check out the Github repo for the Editorial theme, or take a look at the code for this demo site, <a href='https://github.com/jekyll-theme-editorial/jekyll-theme-editorial.github.io/'>jekyll-theme-editorial.github.io</a>."
 banner:
-  url:                "/about"
-  link_title:         "Read About Editorial"
-  button_text:        "Learn More"
+  url:                "https://github.com/middlebear/jekyll-theme-editorial"
+  link_title:         "Visit the Editorial theme Github repo"
+  button_text:        "Github Repo"
 images:
   banner:
     file:             "pic10.jpg"

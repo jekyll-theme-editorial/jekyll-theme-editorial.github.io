@@ -48,8 +48,10 @@ plugins:
 ###################
 # Collections
 ###################
-collections:
-  pages:
+collections:                                  # The theme currently supports these 3 collections by default: [people, pages, projects]
+  people:                                     # find/put people in `\_people`
+    output:         true                      # set to `false` to not generate author pages for site authors
+  pages:                                      # find/put pages in `\_pages`
     output:         true
 
 
@@ -60,7 +62,7 @@ image_path:         '/assets/images/'         # site-wide default path for image
 script_path:        '/assets/js/'             # site-wide default path for scripts
 style_path:         '/assets/css/'            # site-wide default path for styles
 show:                                         # series of switches to customize what appears on the site
-  authors:          false                     # single author blogs may want to disable showing the same author everywhere
+  authors:          true                      # single author blogs may want to disable showing the same author everywhere
 scripts:                                      # these scripts entries can be moved to `_data/scripts.yml` for cleaner and more dynamic script inclusion
   - file: jquery.min.js
   - file: browser.min.js
@@ -91,6 +93,17 @@ defaults:
       menus:        'posts'                   # used by jekyll-menus plugin
       type:         "posts"
       body_class:   "post"                    # overrides the class attribute on the html body tag
+      image_path:   "/assets/images/"
+      author_bio:   "<p>We're still working on a fabulous author bio and page. Check back later to learn more!</p>"
+      comments:     false
+      published:    true
+  - scope:
+      path:         ""
+      type:         "people"
+    values:
+      layout:       "author"
+      menus:        'authors'                 # used by jekyll-menus plugin
+      type:         "people"
       image_path:   "/assets/images/"
       author_bio:   "<p>We're still working on a fabulous author bio and page. Check back later to learn more!</p>"
       comments:     false

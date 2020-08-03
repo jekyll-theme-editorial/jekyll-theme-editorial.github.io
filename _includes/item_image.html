@@ -1,3 +1,8 @@
+{%-comment-%}
+  NOTE: github doesn't like the `find` filter - change to `where` for now
+  DELETE this shim once the latest theme gem > v1.0.1 is deployed
+{%-endcomment-%}
+
 {%-assign item        = article | default: post | default: project | default: pg | default: page-%}
 {%-assign placeholder       = site.static_files         | where: 'name', 'placeholder.png'-%}
 {%-assign static_file_names = site.static_files         | map: 'name'-%}

@@ -25,7 +25,7 @@ Here are some basic principles I attempted to adhere to:
 
 Note that `:~$` is the shell prompt, so copy and paste the bits *after* that (and the 2 lines in the middle represent the `jekyll` command's output):
 
-```
+```sh
 :~$ jekyll new my-jekyll-site
 ... a bunch of output from Jekyll ...
 New jekyll site installed in ~/my-jekyll-site.
@@ -36,7 +36,7 @@ This will create the basic structure of your Jekyll site with all the default fi
 
 You can then run it to see the default site in your browser (`:~/my-jekyll-site$` is the shell prompt, so don't copy that part):
 
-```
+```sh
 :~/my-jekyll-site$ bundle exec jekyll serve
 ```
 
@@ -56,12 +56,14 @@ theme: jekyll-theme-editorial
 
 And then to download and make it available to your site, execute:
 
-    :~/my-jekyll-site$ bundle
-
+```sh
+:~/my-jekyll-site$ bundle
+```
 Or directly install it yourself as:
 
-    :~/my-jekyll-site$ gem install jekyll-theme-editorial
-
+```sh
+:~/my-jekyll-site$ gem install jekyll-theme-editorial
+```
 Then run `bundle exec jekyll serve` (or the shorter `jekyll s` if your setup allows) to see the site so far.
 
 Unless you already had content likes posts and an index file, you'll be staring at largely a blank page, along with a collapsible left menu sidebar and site header, at this point. That's ok, move on to the next section!
@@ -119,9 +121,54 @@ This adds three includes (`responsive_banner.html`, `features.html`, and `articl
 
 This index page is the root page of your site by default, and uses the special `home` layout from the theme. The `home` layout is generally only used by this index page, so that your homepage can have a unique feel and design. If you wish to change this layout, copy the file `_layouts/home.html` from the theme gem (or copy/download it from the Github repository for the theme gem) to your site's `~/my-jekyll-site/_layouts/home.html` file.
 
+#### Aside: Finding the theme gem
+
+It's sometimes difficult to find the theme gem on your system, especially if you're using a version manager, such as [RVM](https://rvm.io "Ruby Version Manager"), along with [bundler](https://bundler.io/ "Rubygems Bundler") for managing gems. Here's the handy incantation `bundle info --path` for finding the directory where a particular gem is installed (assuming it was installed using bundler):
+
+```sh
+:~/my-jekyll-site$ bundle info --path jekyll-theme-editorial
+~/.rvm/rubies/ruby-2.7.1/lib/ruby/gems/2.7.0/gems/jekyll-theme-editorial-1.0.2
+```
+You can then copy the path and `cd` into it:
+
+```sh
+:~/my-jekyll-site$ cd ~/.rvm/rubies/ruby-2.7.1/lib/ruby/gems/2.7.0/gems/jekyll-theme-editorial-1.0.2
+:~/.rvm/rubies/ruby-2.7.1/lib/ruby/gems/2.7.0/gems/jekyll-theme-editorial-1.0.2$
+```
+
+or, at least on macOS, you can directly `open` the gem directory in Finder with:
+
+```sh
+:~/my-jekyll-site$ open ~/.rvm/rubies/ruby-2.7.1/lib/ruby/gems/2.7.0/gems/jekyll-theme-editorial-1.0.2
+```
+There, you can copy any file from the gem and place it into the corresponding folder of your site to make modifications and enhancements to any part of the theme that you wish.
+
+#### Viewing the site index page
+
 At this point, you may also want to change the name of this file from `index.markdown` to the shorter and more conventional `index.md`.
 
 Assuming you left `jekyll serve` running, efresh your browser (on `http://localhost:4000/`) to see the changes so far. You should see a banner with an image, an empty Features section, and an Articles section with one post, "Welcome to Jekyll!".
+
+#### Add asset paths to site configuration
+
+Since its 4.0 release, Jekyll has supported theme configuration defaults by including a `_config.yml` file in the theme gem. This support doesn't yet seem to be universal however. If you're working in an environment that doesn't yet support config defaults being pulled from the theme's gem (like Github pages, which currently uses Jekyll v3.8.7), you'll need to directly add site asset paths to your `_config.yml`:
+
+```yaml
+###################
+# Theme settings
+###################
+image_path:         '/assets/images/'         # site-wide default path for images
+script_path:        '/assets/js/'             # site-wide default path for scripts
+style_path:         '/assets/css/'            # site-wide default path for styles
+scripts:                                      # these scripts entries can be moved to `_data/scripts.yml` for cleaner and more dynamic script inclusion
+  - file: jquery.min.js
+  - file: browser.min.js
+  - file: breakpoints.min.js
+  - file: util.js
+  - file: main.js
+  - file: email-obfuscation.js
+  - file: comments.js
+```
 
 #### Change the site title/subtitle
 
@@ -139,7 +186,7 @@ subtitle: by me and Middlebear
 
 As the default introductory comments in `_config.yml` note, you have to restart the jekyll server for site configuration changes (changes to this file only) to be applied. First, quit the running jekyll server by pressing `ctrl-c`, and restart it again with the same command (or `bundle exec jekyll serve` if necessary):
 
-```
+```sh
 :~/my-jekyll-site$ jekyll s
 ```
 Refresh your browser page (on `http://localhost:4000/`) to see the changes you made at the top of the page in the site header area.
@@ -828,6 +875,9 @@ permalink:        /posts/     # trailing slash makes it an `index.html` file ins
 We also need to tell Jekyll to output collection pages, so add the `collections` key to `_config.yml`:
 
 ```yaml
+###################
+# Collections
+###################
 collections:
   pages:
     output:         true
@@ -1023,7 +1073,92 @@ jekyll-archives:
 
 ### Add People
 
-TODO
+Sone sites will have multiple people associated with it, as authors or otherwise, so let's add a people collection to our site.
+
+#### Set up the People collection
+First, let's tell Jekyll, in our `_config.yml` file, to output our new people collection to individual pages:
+
+```yaml
+###################
+# Collections
+###################
+collections:
+  people:                   # find/put people in `\_people`
+    output:         true
+  pages:
+    output:         true
+```
+
+#### People page defaults
+We'll also need to add some page defaults to the `_config.yml` file for people pages, under the `defaults` key:
+
+```yaml
+  - scope:
+      path:         ""
+      type:         "people"
+    values:
+      layout:       "author"
+      menus:        'authors'                 # used by jekyll-menus plugin
+      type:         "people"
+      image_path:   "/assets/images/"
+      author_bio:   "<p>We're still working on a fabulous author bio and page. Check back later to learn more!</p>"
+      comments:     false
+      published:    true
+```
+
+#### Create some people
+At this point, nothing on the site will have changed. Now we need to add a person or two. Being lazy bears, instead of creating these pages from scratch, we'll just copy them from the Editorial theme gem. As a refresher, to find the theme gem, use
+
+```sh
+:~/my-jekyll-site$ bundle info --path jekyll-theme-editorial
+```
+From the Editorial theme gem directory, we'll copy the whole `_people` directory, which includes 4 people files, to our own site directory. Directories that begin with an underscore ('_') are special to Jekyll. In this case, it houses our people collection.
+
+#### Turn show authors back on (if turned off before)
+For the `authors` key under the `show` key in `_config.yml`, replace `false` with `true`:
+
+```yaml
+show:                                         # series of switches to customize what appears on the site
+  authors:          true                      # single author blogs may want to disable showing the same author everywhere
+```
+Restart the Jekyll server and click on the "People" link (which now has 3 sub-items too!) in the sidebar menu. Oops... you'll see an unstyled HTML listing page. We'll fix that next. In the meantime, you should be able to click on the three people listed to see their author pages. Why 3 and not 4? Because one of them is not yet published.
+
+### Add the Authors index page
+
+To provide a nice list of authors, we'll take advantage of the theme's `author.html` include, which provides a standard block list format for an author. We iterate through our `site.people` and generate this include for each published author. We set the pages `permalink` in the front matter to `/people/` so that it overrides the ugly HTML index page we saw earlier. Incidentally, if `site.show.authors` is set to `false`, then we'll just show a "404 Not Found" page instead.
+
+
+```liquid
+---
+title:            Authors
+date:             2020-01-02 01:23:45 -0800
+author_bio:       "<p>We're still working on this bio!</p>"
+permalink:        /people/    # trailing slash makes it an `index.html` file inside the `/people/` directory, rather than a `people.html` file in the root
+---
+
+{% if site.show.authors-%}
+  {% assign peeps = site.collections | find: "label", 'people'-%}
+  {% if peeps.output-%}
+    <p>Our wonderful authors love to share tales of wonder and zeal. Sometimes they go overboard and fall into the waters of silliness or cynicism. We hope you do understand, and take that into the highest consideration.</p>
+    <hr class="major"/>
+    {% if site.show.authors %}
+      {% for author in site.people %}
+        {%-if author.published %}
+          {% include author.html %}
+        {%-else-%}
+          {% include author.html excerpt=page.author_bio %}
+        {%-endif %}
+        <hr class="major"/>
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+{%-else-%}
+  {% include 404.html %}
+{%-endif-%}
+```
+If all went well, you should be able to refresh the ugly people index listing and get a nicely formatted one in its place.
+
+### Add Authors to our lone post
 
 ### Add Projects
 
