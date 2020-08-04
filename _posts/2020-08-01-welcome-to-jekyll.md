@@ -1,9 +1,9 @@
 ---
-layout: post
-title:  "Welcome to Jekyll!"
-date:   2020-08-01 11:48:57 -0700
-categories: jekyll update
-tags: [jekyll, meta, technology, code, site, editorial theme]
+title:            "Welcome to Jekyll!"
+author:           [julia, petunia]
+date:             2020-08-01 11:48:57 -0700
+categories:       jekyll update
+tags:             [jekyll, meta, technology, code, site, editorial theme]
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
