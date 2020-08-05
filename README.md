@@ -1189,7 +1189,7 @@ show:                                         # series of switches to customize 
   authors:          true                      # single author blogs may want to disable showing the same author everywhere
   post_authors:     true                      # you may still want to show the author(s) at the bottom of posts
 ```
-Now restart our Jekyll server since we changed our site config, and refresh the post page to see the changes. You'll notice two author cars, one each for julia and petunia, at the bottom of the post. Our byline now helpfully links down to those author cards instead of directly to the author pages. The cards link to the full author pages instead. Notice that petunia's card doesn't link, since she's unpublished, and therefore doesn't have an author page yet.
+Now restart our Jekyll server since we changed our site config, and refresh the post page to see the changes. You'll notice two author cards, one each for julia and petunia, at the bottom of the post. Our byline now helpfully links down to those author cards instead of directly to the author pages. The cards link to the full author pages instead. Notice that petunia's card doesn't link, since she's unpublished, and therefore doesn't have an author page yet.
 
 ### Add Projects
 
@@ -1252,7 +1252,7 @@ permalink:        /projects/
 ```
 Now you can click on "Projects" in the sidebar menu and hopefully see a nicely formatted list of the 3 published projects. You can toggle the `published` status of the fourth project to see that one as well.
 
-### Toggle summaries and dates for project pages
+#### Toggle summaries and dates for project pages
 
 Our sample project pages have extended summaries which we'd like to show. At the same time, our projects index page is displaying a page creation date that looks odd in the upper right corner of page content area. We can fix both via two site configuration settings in `_config.yml`:
 
@@ -1261,6 +1261,19 @@ include_summary:    [projects]                # collections for which to show th
 exclude_dates:      [people, pages]           # collections for which to not show dates in the header
 ```
 Add these two lines to `_config.yml` and restart Jekyll to see the date disappear on the projects index page (which is part of the `pages` collection, not the `projects` colllection) and summaries on each of the individual published project pages (which *are* part of the `projects` collection). While we're at it, we removed publication dates from people pages too.
+
+#### Add Author cards to projects
+
+Like posts, we can show author cards at the bottom of projects, and link those to the full author pages. To do so, we'll add a `project_authors` configuration key to `_config.yml` under the `show` key:
+
+```yaml
+show:                                         # series of switches to customize what appears on the site
+  authors:          true                      # single author blogs may want to disable showing the same author everywhere
+  post_authors:     true                      # you may still want to show the author(s) at the bottom of posts
+  page_authors:     true                      # you may still want to show the author(s) for pages
+  project_authors:  true                      # you may still want to show the author(s) for projects
+```
+While we were at it, we also added the `page_authors` key. Note that no pages so far have authors defined in their front matter, so you shouldn't see authors on any pages in the pages collection. Restart the Jekyll server and refresh any published project page to see author cards at the bottom.
 
 
 ## Setup Notes
@@ -1444,3 +1457,4 @@ The Editorial Jekyll theme is available as open source under the terms of the [C
 * Demo Images: [Unsplash](unsplash.com)
 * Icons: [Font Awesome](fontawesome.io)
 * Other: [jQuery](jquery.com), [Responsive Tools](https://github.com/ajlkn/responsive-tools)
+
