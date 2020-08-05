@@ -1090,7 +1090,7 @@ collections:
 ```
 
 #### People page defaults
-We'll also need to add some page defaults to the `_config.yml` file for people pages, under the `defaults` key:
+We'll also need to add some page defaults to the `_config.yml` file for people pages, under the `defaults` key that we defined earlier:
 
 ```yaml
   - scope:
@@ -1193,7 +1193,75 @@ Now restart our Jekyll server since we changed our site config, and refresh the 
 
 ### Add Projects
 
-TODO
+Projects are just another type of collection that are neither date-based posts nor people. You can use them for any kind of collection you'd like, visually renaming the collection to something more suitable to your purposes, even if the theme calls the collection "projects" internally. We'll largely go through the same steps as adding people.
+
+#### Set up the Projects collection
+As with the people collection, configure Jekyll in the `_config.yml` file to output our projects collection:
+
+```yaml
+###################
+# Collections
+###################
+collections:
+  people:
+    output:         true
+  pages:
+    output:         true
+  projects:                 # find/put projects in `\_projects`
+    output:         true
+```
+
+#### Project page defaults
+Let's add in the relevant page defaults to the `_config.yml` file under the `defaults` key we defined earlier:
+
+```yaml
+  - scope:
+      path:         ""
+      type:         "projects"
+    values:
+      layout:       "project"
+      menus:        'projects'                # used by jekyll-menus plugin
+      type:         "projects"
+      image_path:   "/assets/images/"
+      comments:     false
+      published:    false
+```
+#### Create some projects
+As before, nothing will have changed at this point until we add some projects. We'll again just copy them from the Editorial theme gem rather than create them from scratch. If necessary, use `bundle info` again to find the theme gem from which to copy the `_projects` folder with its 4 project files inside into your site folder:
+
+```sh
+:~/my-jekyll-site$ bundle info --path jekyll-theme-editorial
+```
+Then, after you save the `_config.yml` file, restart, and refresh the browser, you should see three new menu items under "Projects" in the menu sidebar for the added project pages (as with authors, the 4th is unpublished). By the way, now that we have some projects, we're showing their mini-post cards in the sidebar as well!
+
+
+### Add the Projects index page
+
+Similar to what we did with authors, we'll use the theme's `projects.html` include to list out standard project blocks for the projects index page. We set the page's `permalink` in the front matter to `/projects/` so that it overrides the ugly default HTML index page. If there are no published projects, we'll just show a little message stating as much. Save this file as `_pages/projects.html` (not to be confused with `_includes/projects.html` which is provided by the Editorial theme gem).
+
+```liquid
+---
+title:            Projects
+date:             2020-03-01 01:23:45 -0800
+permalink:        /projects/
+---
+
+<p>These projects are the bomb. Well, not really a bomb, but <em>da bomb</em>, y'know, like awesome but more explosive or something. Anyway check em out and make happy noises <em>en masse</em>.</p>
+
+{% include projects.html %}
+```
+Now you can click on "Projects" in the sidebar menu and hopefully see a nicely formatted list of the 3 published projects. You can toggle the `published` status of the fourth project to see that one as well.
+
+### Toggle summaries and dates for project pages
+
+Our sample project pages have extended summaries which we'd like to show. At the same time, our projects index page is displaying a page creation date that looks odd in the upper right corner of page content area. We can fix both via two site configuration settings in `_config.yml`:
+
+```yaml
+include_summary:    [projects]                # collections for which to show the summary in the header
+exclude_dates:      [people, pages]           # collections for which to not show dates in the header
+```
+Add these two lines to `_config.yml` and restart Jekyll to see the date disappear on the projects index page (which is part of the `pages` collection, not the `projects` colllection) and summaries on each of the individual published project pages (which *are* part of the `projects` collection). While we're at it, we removed publication dates from people pages too.
+
 
 ## Setup Notes
 
@@ -1376,4 +1444,3 @@ The Editorial Jekyll theme is available as open source under the terms of the [C
 * Demo Images: [Unsplash](unsplash.com)
 * Icons: [Font Awesome](fontawesome.io)
 * Other: [jQuery](jquery.com), [Responsive Tools](https://github.com/ajlkn/responsive-tools)
-

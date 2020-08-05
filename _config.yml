@@ -53,7 +53,8 @@ collections:                                  # The theme currently supports the
     output:         true                      # set to `false` to not generate author pages for site authors
   pages:                                      # find/put pages in `\_pages`
     output:         true
-
+  projects:                                   # find/put projects in `\_projects`
+    output:         true
 
 ###################
 # Theme settings
@@ -64,6 +65,10 @@ style_path:         '/assets/css/'            # site-wide default path for style
 show:                                         # series of switches to customize what appears on the site
   authors:          true                      # single author blogs may want to disable showing the same author everywhere
   post_authors:     true                      # you may still want to show the author(s) at the bottom of posts
+  page_authors:     true                      # you may still want to show the author(s) for pages
+  project_authors:  true                      # you may still want to show the author(s) for projects
+include_summary:    [projects]                # collections for which to show the summary in the header
+exclude_dates:      [people, pages]           # collections for which to not show dates in the header
 scripts:                                      # these scripts entries can be moved to `_data/scripts.yml` for cleaner and more dynamic script inclusion
   - file: jquery.min.js
   - file: browser.min.js
@@ -118,6 +123,16 @@ defaults:
       image_path:   "/assets/images/"
       comments:     false
       published:    true
+  - scope:
+      path:         ""
+      type:         "projects"
+    values:
+      layout:       "project"
+      menus:        'projects'                # used by jekyll-menus plugin
+      type:         "projects"
+      image_path:   "/assets/images/"
+      comments:     false
+      published:    false
 
 
 ###################
