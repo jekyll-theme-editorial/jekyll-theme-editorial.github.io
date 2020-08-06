@@ -1210,6 +1210,7 @@ collections:
   projects:                 # find/put projects in `\_projects`
     output:         true
 ```
+Now we have three entries&mdash;one each for people, pages, and projects&mdash;under the `collections` key in our `_config.yml` file.
 
 #### Project page defaults
 Let's add in the relevant page defaults to the `_config.yml` file under the `defaults` key we defined earlier:
@@ -1226,6 +1227,7 @@ Let's add in the relevant page defaults to the `_config.yml` file under the `def
       comments:     false
       published:    false
 ```
+
 #### Create some projects
 As before, nothing will have changed at this point until we add some projects. We'll again just copy them from the Editorial theme gem rather than create them from scratch. If necessary, use `bundle info` again to find the theme gem from which to copy the `_projects` folder with its 4 project files inside into your site folder:
 
@@ -1273,7 +1275,161 @@ show:                                         # series of switches to customize 
   page_authors:     true                      # you may still want to show the author(s) for pages
   project_authors:  true                      # you may still want to show the author(s) for projects
 ```
-While we were at it, we also added the `page_authors` key. Note that no pages so far have authors defined in their front matter, so you shouldn't see authors on any pages in the pages collection. Restart the Jekyll server and refresh any published project page to see author cards at the bottom.
+While here, we also added the `page_authors` key. Note that no pages so far have authors defined in their front matter, so you shouldn't see authors on any pages in the pages collection. This is only for pages you explicily want authors to show, by including them in the front matter. Restart the Jekyll server and refresh any published project page to see author cards at the bottom.
+
+### Post decorations
+
+Posts can be decorated with more than the titles, authors, body content, tags, and categories we've seen so far. The Editorial theme supports an array of images, metadata, and supplementary fields to make your posts. Let's pull up the relevant `_sample` file, `post-template.md` to get an overview:
+
+```yaml
+---
+# defaults assumed for these jekyll variables: layout, permalink, published, excerpt
+# name the file similar to title (slugified - replace spaces with underscores & remove punctuation)
+title:            ""                          # used in the page/post header, HTML title, menus & SEO
+subtitle:         ""                          # optional; shown under the page/post header
+author:           []                          # use the handle of the author, not their name
+date:             2020-01-01 00:00:00 -0800   # publication date; overrides the file save date
+last_modified_at:                             # optional; date to show in addition to/in place of create date
+categories:       []                          # choose one best category, ideally
+tags:             []                          # choose 3-7 tags, ideally
+series:           "Build a blog"              # optional; use `series` to group posts and show a sidebar of posts in the series (limited to 1 for now)
+location:         "New York, NY"              # optional; location where the post was made
+website:          https://example.com/        # optional; external, related website, possibly featured
+image:            ""                          # default image for SEO & jekyll-feed
+images:                                       # all images are optional; banner and either default or thumbnail are recommended
+  default:                                    # general-use size, default for lists if no thumbnail
+    file:         ""                          # no path, just the filename (e.g., "my great image.png")
+                                              # default images generally use the default image texts, but can be specified here
+  banner:                                     # largest, full-page width landscape at top of page
+    file:         ""                          # no path, just the filename (e.g., "my great image.png")
+    alt_text:     ""                          # describe the image for screen readers
+    caption:      ""                          # optional explanatory text, can be used for attributions
+    title:        ""                          # optional; usually shown as a tooltip on hover
+  thumbnail:                                  # smaller image for lists/grids (like index pages)
+    file:         ""                          # no path, just the filename (e.g., "my great image.png")
+                                              # thumbnails generally use the default image texts, but can be specified here
+# these texts are defaults for all images in the images array, if not individually specified:
+  alt_text:       ""                          # describe the image for screen readers
+  caption:        ""                          # optional explanatory text, can be used for attributions
+  title:          ""                          # optional; usually shown as a tooltip on hover
+canonical_url:    ""                          # optional; customize the canonical URL for this page
+lang:             ""                          # optional; language for the page, `en_US` by default
+description:      ""                          # optional; short description of the page's content used for SEO
+# NOTE that the first paaragraph below is the excerpt, if no excerpt is defined here in the front matter.
+---
+```
+
+#### Adding textual elements
+We'll first start by adding some textual elements, like subtitle and location. Add the following to our blog post's front matter:
+
+```yaml
+subtitle:         "How Jekyll Makes It All So Easy!"
+location:         "San Francisco, CA"
+website:          https://jekyllrb.com/docs/home
+description:      Let's make sure Google and company know enough about this page that it will pop up higher in search results
+```
+Refresh our blog post page, and you should see the page title is now linked (visually indicated with a superscripted link icon), a subtitle under it, and the location listed in the byline. The description field is purely for <abbr title="Search Engine Optimization">SEO</abbr> purposes, and can only be seen by viewing the source of the page (in the HTML HEAD section).
+
+#### Adding a post to a series
+
+Sometimes you want to group a few posts together as a series of posts in a way that's unsuitable for tags or categories. You can do this grouping with series. It's a single title for the series, like "Build a blog", that must be the exact same for each post you want grouped together. In fact, let's add this exact series to our lone blog post. Add the following line to the blog post's front matter:
+
+```yaml
+series:           "build-a-blog"
+```
+Now refresh the blog post page in your browser and you should see a new series sidebar appear on the right. Note that you don't have to "slugify" the series name. This sames series name just happens to be that way.
+
+### Adding a post image
+
+The Editorial theme, like many blog themes, features a prominent banner image for most pages, including blog posts. To define this images, we have a few different methods. We'll go through them from simplest to most flexible.
+
+#### The Simplest, but least flexible, way to add an image
+
+Because many Jekyll themes will simply use an `image` key in the post front matter, the Editorial theme includes this option as a backwards compatibility measure. We'll use the [Jekyll logo](https://jekyllrb.com/img/logo-2x.png) as a convenient sample image. Be sure to save this image file to your site's `/assets/images/` folder (creating these folders along the way, if necessary), which is the theme-wide default location for image assets. Then add the following to our blog post's front matter:
+
+```yaml
+image:            "logo-2x.png"
+```
+Save the changes and then refresh our blog post page to see a nice, and possibly blurry (due to its lower resolution), Jekyll logo pop up as a banner image on the post.
+
+#### Adding alt text, title, and caption
+
+Because HTML images have some textual metadata often attached to them, the Editorial theme introduces these extra fields for the common image metadata in the post's front matter:
+
+```yaml
+alt_text:         "The Jekyll logo, featuring stylized script and a test tube filled with red, bubbling liquid"
+image_title:      "The Jekyll logo is so cool!"
+caption:          "Jekyll lets you create static websites quickly and easily!"
+```
+Add these lines, save, and refresh the page, and you should see a caption added to the bottom of the logo.
+
+#### A more flexible middle option for images
+
+One problem you might recognize right away is that this method only ever allows one image per post. What if you what 2 different sizes, like a thumbnail and a high resolution version? Our Editorial theme handles this with a slightly more complex yaml structure (replace the *four* previous lines with this):
+
+```yaml
+images:
+  default:
+    file:         "logo-2x.png"
+  alt_text:       "The Jekyll logo, featuring stylized script and a test tube filled with red, bubbling liquid"
+  title:          "The Jekyll logo is so cool!"
+  caption:        "Jekyll lets you create static websites quickly and easily!"
+```
+or alternatively,
+
+```yaml
+images:
+  default:        "logo-2x.png"
+  alt_text:       "The Jekyll logo, featuring stylized script and a test tube filled with red, bubbling liquid"
+  title:          "The Jekyll logo is so cool!"
+  caption:        "Jekyll lets you create static websites quickly and easily!"
+```
+
+You can even mix and match the prior two styles, for backwards compatibility:
+
+```yaml
+image:            "logo-2x.png"
+images:
+  alt_text:       "The Jekyll logo, featuring stylized script and a test tube filled with red, bubbling liquid"
+  title:          "The Jekyll logo is so cool!"
+  caption:        "Jekyll lets you create static websites quickly and easily!"
+```
+
+#### The most flexible option for images
+
+The prior structure sets us up to be able to add a few different versions of the image (`default`, `banner`, and `thumbnail`):
+
+```yaml
+images:
+  default:
+    file:         "pic02.jpg"
+  banner:
+    file:         "logo-2x.png"
+  thumbnail:
+    file:         "pic06.jpg"
+    alt_text:     "A thumbnail version of the Jekyll logo, featuring stylized script and a red-liquid-filled test tube"
+    title:        "Read more about how to use Jekyll!"
+  alt_text:       "The Jekyll logo, featuring stylized script and a test tube filled with red, bubbling liquid"
+  title:          "The Jekyll logo is so cool!"
+  caption:        "Jekyll lets you create static websites quickly and easily!"
+```
+
+You'll notice that you can customize the metadata for each image along with the image file itself. Now if you save and then navigate to the posts index page (clicking "All Posts" in the post nav area or "Recent Posts" in the sidebar menu), you should notice the thumbnail image is different and has different hover text from that on the post page.
+
+#### Missing image
+
+Note that if you happen to misspell the name of your image in the front matter config, you'll get a helpful "Missing image" message with the file name and image title in a box instead of the image that Jekyll couldn't find during build.
+
+### Multiple posts and post navigation
+
+To see post navigation in action, we'll need more than one post to navigate to. Rather than making up a bunch of posts, we'll simply copy sample posts from the theme gem, as we've done for other demo content. Remember to `bundle info` to find the theme gem folder:
+
+```sh
+:~/my-jekyll-site$ bundle info --path jekyll-theme-editorial
+```
+And then copy the posts in the `_posts` directory from the theme gem to your site directory's `_posts` folder. Refresh the browser and see these new posts show up in the sidebar menu. You should also see a "previous" post navigation link (likely to the "Look at my great tatoos everybody!" post) at the top and bottom of the post content. You'll also notice that our "Welcome to Jekyll!" post now has some sibling posts in the "Build A Blog" series of posts. Finally, a set of "Latest Posts" (or "Related Posts" if you have Jekyll's `site.related_posts` LSI functionality enabled, which is not supported by the Github Pages build process) will show up below the post author(s).
+
+Clicking around the "Archives", "Categories", and "Tags" pages, not to mention author pages and the home page, will now show more post-related content as well.
 
 
 ## Setup Notes

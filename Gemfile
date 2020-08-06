@@ -10,7 +10,7 @@ source "https://rubygems.org"
 # gem "jekyll", "~> 4.1.1"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 # gem "minima", "~> 2.5"
-gem "jekyll-theme-editorial", "~>1.0.9"
+gem "jekyll-theme-editorial", "~>1.0.10"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~>0.13"

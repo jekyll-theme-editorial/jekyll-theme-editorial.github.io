@@ -2,8 +2,25 @@
 title:            "Welcome to Jekyll!"
 author:           [julia, petunia]
 date:             2020-08-01 11:48:57 -0700
+subtitle:         "How Jekyll Makes It All So Easy!"
+location:         "San Francisco, CA"
+website:          https://jekyllrb.com/docs/home
 categories:       jekyll update
 tags:             [jekyll, meta, technology, code, site, editorial theme]
+series:           "build-a-blog"
+images:
+  default:
+    file:         "pic02.jpg"
+  banner:
+    file:         "logo-2x.png"
+  thumbnail:
+    file:         "pic06.jpg"
+    alt_text:     "A thumbnail version of the Jekyll logo, featuring stylized script and a red-liquid-filled test tube"
+    title:        "Read more about how to use Jekyll!"
+  alt_text:       "The Jekyll logo, featuring stylized script and a test tube filled with red, bubbling liquid"
+  title:          "The Jekyll logo is so cool!"
+  caption:        "Jekyll lets you create static websites quickly and easily!"
+description:      Let's make sure Google and company know enough about this page that it will pop up higher in search results
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.

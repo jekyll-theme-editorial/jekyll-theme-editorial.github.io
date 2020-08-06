@@ -17,8 +17,8 @@ GEM
     commonmarker (0.17.13)
       ruby-enum (~> 0.5)
     concurrent-ruby (1.1.6)
-    dnsruby (1.61.3)
-      addressable (~> 2.5)
+    dnsruby (1.61.4)
+      simpleidn (~> 0.1)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -152,7 +152,7 @@ GEM
     jekyll-theme-dinky (0.1.1)
       jekyll (~> 3.5)
       jekyll-seo-tag (~> 2.0)
-    jekyll-theme-editorial (1.0.9)
+    jekyll-theme-editorial (1.0.10)
       jekyll (>= 3.8.7, < 5.0)
       jekyll-feed (~> 0.13)
       jekyll-seo-tag (~> 2.6)
@@ -232,6 +232,8 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
+    simpleidn (0.1.1)
+      unf (~> 0.1.4)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     thread_safe (0.3.6)
@@ -239,6 +241,9 @@ GEM
       ethon (>= 0.9.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
     zeitwerk (2.4.0)
 
@@ -248,7 +253,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages (~> 206)
   jekyll-feed (~> 0.13)
-  jekyll-theme-editorial (~> 1.0.9)
+  jekyll-theme-editorial (~> 1.0.10)
   tzinfo (~> 1.2)
   tzinfo-data
   wdm (~> 0.1.1)
